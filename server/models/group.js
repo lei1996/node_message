@@ -30,13 +30,30 @@ const GroupSchema = new Schema({
     // ref: "User",
   },
 
-  /** 成员 
+  /** 成员
    * 成员只记录id, 拿的时候返回数组
-  */
+   */
   members: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+  ],
+});
+
+// 用户群组列表
+const GroupListSchema = new Schema({
+  /** 用户id 某个用户的群组列表查询 */
+  userId: {
+    type: String,
+    index: true,
+  },
+
+  /** 用户的群组列表 存储 Schema 数组 */
+  groupList: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Group",
     },
   ],
 });
@@ -47,4 +64,10 @@ const GroupSchema = new Schema({
  */
 const Group = model("Group", GroupSchema);
 
-export default Group;
+/**
+ * Group Model
+ * 用户群组列表
+ */
+const GroupList = model("GroupList", GroupListSchema);
+
+module.exports = { Group, GroupList };

@@ -59,4 +59,4 @@ const MessageListSchema = new Schema({
  */
 const MessageList = model("MessageList", MessageListSchema);
 
-export default MessageList;
+module.exports = MessageList;

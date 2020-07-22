@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+const { Schema, model } = require("mongoose");
 
 const SocketSchema = new Schema({
   /** 创建时间 */
@@ -46,4 +46,4 @@ const SocketSchema = new Schema({
  */
 const Socket = model("Socket", SocketSchema);
 
-export default Socket;
+module.exports = Socket;

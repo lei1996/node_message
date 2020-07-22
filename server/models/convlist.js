@@ -54,4 +54,4 @@ const ConvListSchema = new Schema({
  */
 const ConvList = model("ConvList", ConvListSchema);
 
-export default ConvList;
+module.exports = ConvList;

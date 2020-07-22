@@ -26,4 +26,4 @@ const FriendSchema = new Schema({
  */
 const Friend = model("Friend", FriendSchema);
 
-export default Friend;
+module.exports = Friend;

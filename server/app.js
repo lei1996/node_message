@@ -3,6 +3,15 @@ const IO = require("koa-socket-2");
 
 const Socket = require("./models/socket");
 
+const enhanceContext = require("./middlewares/enhanceContext");
+const log = require("./middlewares/log");
+const catchError = require("./middlewares/catchError");
+const seal = require("./middlewares/seal");
+const frequency = require("./middlewares/frequency");
+const isLogin = require("./middlewares/isLogin");
+const route = require("./middlewares/route");
+const isAdmin = require("./middlewares/isAdmin");
+
 const app = new Koa();
 
 const io = new IO({
@@ -11,6 +20,9 @@ const io = new IO({
     pingInterval: 5000,
   },
 });
+
+// 注入应用
+io.attach(app);
 
 if (process.env.NODE_ENV === "production" && config.allowOrigin) {
   // @ts-ignore
@@ -41,7 +53,7 @@ io.use(
   )
 );
 
-app.io.on("connection", async (socket) => {
+io.on("connection", async (socket) => {
   socket.ip =
     socket.handshake.headers["x-real-ip"] ||
     socket.request.connection.remoteAddress;

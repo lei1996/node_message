@@ -1,11 +1,10 @@
 const connectDB = require("./mongoose");
 const app = require("./app");
 
-const config = require("../config/server");
+const config = require("./config/server");
 
 const Socket = require("./models/socket");
-const Group = require("./models/group");
-const getRandomAvatar = require("../utils/getRandomAvatar");
+const { Group } = require("./models/group");
 
 connectDB()
   .then(async () => {
@@ -14,7 +13,8 @@ connectDB()
     if (!group) {
       const defaultGroup = await Group.create({
         name: config.defaultGroupName,
-        avatar: getRandomAvatar(),
+        avatar:
+          "https://cdn.suisuijiang.com/GroupAvatar/5adad39555703565e7903f78_1546952226984",
         isDefault: true,
       });
       if (!defaultGroup) {

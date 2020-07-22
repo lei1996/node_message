@@ -1,4 +1,4 @@
-const config = reuqire("../../config/server");
+const config = require("../config/server");
 
 /**
  * 拦截非管理员用户请求需要管理员权限的接口

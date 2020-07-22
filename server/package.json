@@ -2,9 +2,9 @@
   "name": "node_message",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "node index.js",
     "dev": "nodemon server"
   },
   "keywords": [],
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^9.3.1",
+    "command-line-args": "^5.1.1",
     "ip": "^1.1.5",
     "jwt-simple": "^0.5.6",
     "koa": "^2.13.0",

@@ -13,7 +13,7 @@ module.exports = {
 
   // mongodb address
   database:
-    options.database || env.Database || "mongodb://localhost:27017/fiora",
+    options.database || env.Database || "mongodb://localhost:27017/darius",
 
   // jwt encryption secret
   jwtSecret: options.jwtSecret || env.JwtSecret || "jwtSecret",
@@ -36,7 +36,7 @@ module.exports = {
   administrator: options.administrator || env.Administrator || "",
 
   // default group name
-  defaultGroupName: "fiora",
+  defaultGroupName: "darius",
 
   /** 禁用注册功能 */
   disableRegister: false,

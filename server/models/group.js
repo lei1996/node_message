@@ -26,8 +26,13 @@ const GroupSchema = new Schema({
   /** 创建者 */
   creator: {
     type: Schema.Types.ObjectId,
-    // 看需要是否 返回 user 对象 还是返回 userId
-    // ref: "User",
+    ref: "User",
+  },
+
+  /** 是否为默认群 */
+  isDefault: {
+    type: Boolean,
+    default: false,
   },
 
   /** 成员

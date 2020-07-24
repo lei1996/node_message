@@ -12,6 +12,12 @@ const isLogin = require("./middlewares/isLogin");
 const route = require("./middlewares/route");
 const isAdmin = require("./middlewares/isAdmin");
 
+const userRoutes = require('./routes/user');
+const groupRoutes = require('./routes/group');
+const messageRoutes = require('./routes/message');
+const qiniuRoutes = require('./routes/qiniu');
+const systemRoutes = require('./routes/system');
+
 const app = new Koa();
 
 const io = new IO({
@@ -39,16 +45,14 @@ io.use(isLogin());
 io.use(isAdmin());
 io.use(
   route(
-    // @ts-ignore
     app.io,
-    // @ts-ignore
     app._io,
     {
-      // ...userRoutes,
-      // ...groupRoutes,
-      // ...messageRoutes,
-      // ...qiniuRoutes,
-      // ...systemRoutes,
+      ...userRoutes,
+      ...groupRoutes,
+      ...messageRoutes,
+      qiniuRoutes,
+      ...systemRoutes,
     }
   )
 );

@@ -1,7 +1,7 @@
 const Koa = require("koa");
 const IO = require("koa-socket-2");
 
-const Socket = require("./models/socket");
+const { Socket, UserConnect } = require("./models/socket");
 
 const enhanceContext = require("./middlewares/enhanceContext");
 const log = require("./middlewares/log");
@@ -12,11 +12,11 @@ const isLogin = require("./middlewares/isLogin");
 const route = require("./middlewares/route");
 const isAdmin = require("./middlewares/isAdmin");
 
-const userRoutes = require('./routes/user');
-const groupRoutes = require('./routes/group');
-const messageRoutes = require('./routes/message');
-const qiniuRoutes = require('./routes/qiniu');
-const systemRoutes = require('./routes/system');
+const userRoutes = require("./routes/user");
+const groupRoutes = require("./routes/group");
+const messageRoutes = require("./routes/message");
+const qiniuRoutes = require("./routes/qiniu");
+const systemRoutes = require("./routes/system");
 
 const app = new Koa();
 
@@ -44,17 +44,13 @@ io.use(frequency());
 io.use(isLogin());
 io.use(isAdmin());
 io.use(
-  route(
-    app.io,
-    app._io,
-    {
-      ...userRoutes,
-      ...groupRoutes,
-      ...messageRoutes,
-      qiniuRoutes,
-      ...systemRoutes,
-    }
-  )
+  route(app.io, app._io, {
+    ...userRoutes,
+    ...groupRoutes,
+    ...messageRoutes,
+    qiniuRoutes,
+    ...systemRoutes,
+  })
 );
 
 io.on("connection", async (socket) => {
@@ -72,6 +68,10 @@ io.on("connection", async (socket) => {
     await Socket.deleteOne({
       id: socket.id,
     });
+    // await UserConnect.deleteOne({
+    //   userId: socket.id,
+    // });
+
   });
 });
 

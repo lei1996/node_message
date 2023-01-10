@@ -20,7 +20,7 @@
     "jwt-simple": "^0.5.6",
     "koa": "^2.13.0",
     "koa-ejs": "^4.3.0",
-    "koa-jwt": "^4.0.0",
+    "koa-jwt": "^4.0.4",
     "koa-send": "^5.0.1",
     "koa-socket-2": "^1.2.0",
     "koa-static": "^5.0.0",
